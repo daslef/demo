@@ -16,8 +16,7 @@ module.exports = function (env) {
     var config = {
         mode: production ? 'production' : 'development',
         entry: {
-            myapp: './sources/frontend.js',
-            sdk: './sources/supervisor.js',
+            frontend: './sources/frontend.js',
         },
         output: {
             path: path.join(__dirname, 'codebase'),
@@ -56,7 +55,7 @@ module.exports = function (env) {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: '/css/[name].css',
+                filename: '/css/style.css',
             }),
             new webpack.DefinePlugin({
                 VERSION: `"${pack.version}"`,

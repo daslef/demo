@@ -20,11 +20,11 @@
 }
 /*login form*/
 .invalid_login .webix_header > div {
-  background: #FC3636;
+  background: #fc3636;
   transition: background 1s;
 }
 .invalid_login {
-  -webkit-animation: formshake .5s linear;
+  -webkit-animation: formshake 0.5s linear;
 }
 @-webkit-keyframes formshake {
   8%,
@@ -50,7 +50,7 @@
   text-align: center;
 }
 .app_layout.webix_layout_clean {
-  background: #EBEDF0;
+  background: #ebedf0;
 }
 .app_start .webix_template {
   padding: 12px 12px;
