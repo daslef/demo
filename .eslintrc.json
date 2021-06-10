@@ -1,14 +1,18 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true
     },
-    "globals":{
-        "webix":true,
-        "scheduler":true,
-        "APPNAME":true, "VERSION":true, "PRODUCTION":true, "BUILD_AS_MODULE":true
+    "globals": {
+        "webix": true,
+        "scheduler": true,
+        "APPNAME": true,
+        "VERSION": true,
+        "PRODUCTION": true,
+        "BUILD_AS_MODULE": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "prettier"],
     "parserOptions": {
         "sourceType": "module",
         "ecmaVersion": 6,
@@ -17,18 +21,7 @@
         }
     },
     "rules": {
-        "indent": [
-            "error",
-            "tab",
-            {"SwitchCase":1}
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"]
     }
 }

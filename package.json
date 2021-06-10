@@ -1,42 +1,57 @@
 {
-  "name": "webix-jet-app",
-  "version": "1.1.0",
-  "description": "Webix Jet App",
-  "main": "sources/myapp.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint sources/",
-    "build": "webpack --env.production true",
-    "module": "webpack --env.production true --env.module true",
-    "standalone": "webpack --env.production true --env.module true --env.standalone true",
-    "start": "webpack-dev-server --open"
-  },
-  "keywords": [
-    "webix",
-    "jet"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/preset-env": "^7.14.4",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^8.1.2",
-    "babel-plugin-syntax-dynamic-import": "6.18.0",
-    "babel-plugin-transform-object-rest-spread": "6.26.0",
-    "css-loader": "0.28.7",
-    "eslint": "4.7.2",
-    "file-loader": "0.11.2",
-    "less": "2.7.2",
-    "less-loader": "^5.0.0",
-    "mini-css-extract-plugin": "0.4.0",
-    "url-loader": "0.5.9",
-    "webpack": "4.12.1",
-    "webpack-cli": "3.0.8",
-    "webpack-dev-server": "3.1.4"
-  },
-  "dependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "^7.14.4",
-    "jsonwebtoken": "^8.5.1",
-    "uuid": "^3.1.0",
-    "webix-jet": "2.1.2"
-  }
+    "name": "webix-jet-app",
+    "version": "1.1.0",
+    "description": "Webix Jet App",
+    "main": "sources/myapp.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon ./server.js localhost 3000",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint:fix": "eslint sources/ --fix",
+        "lint:check": "eslint sources/",
+        "prettier:fix": "prettier --write .",
+        "prettier:check": "prettier --check .",
+        "w:build": "webpack --env.production true",
+        "w:module": "webpack --env.production true --env.module true",
+        "w:standalone": "webpack --env.production true --env.module true --env.standalone true",
+        "w:start": "webpack-dev-server --open",
+        "prepare": "husky install"
+    },
+    "keywords": [
+        "webix",
+        "jet"
+    ],
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/preset-env": "^7.14.4",
+        "babel-core": "^6.26.0",
+        "babel-loader": "^8.1.2",
+        "babel-plugin-syntax-dynamic-import": "6.18.0",
+        "babel-plugin-transform-object-rest-spread": "6.26.0",
+        "css-loader": "0.28.7",
+        "eslint": "^7.28.0",
+        "eslint-config-prettier": "^8.3.0",
+        "file-loader": "0.11.2",
+        "husky": "^6.0.0",
+        "less": "2.7.2",
+        "less-loader": "^5.0.0",
+        "lint-staged": "^11.0.0",
+        "mini-css-extract-plugin": "0.4.0",
+        "prettier": "^2.3.1",
+        "url-loader": "0.5.9",
+        "webpack": "4.12.1",
+        "webpack-cli": "3.0.8",
+        "webpack-dev-server": "3.1.4"
+    },
+    "dependencies": {
+        "@babel/plugin-proposal-object-rest-spread": "^7.14.4",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "nodemon": "^2.0.7",
+        "uuid": "^3.1.0",
+        "webix-jet": "2.1.2"
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
+    }
 }
