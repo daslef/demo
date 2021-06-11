@@ -16,11 +16,12 @@ module.exports = function (env) {
     var config = {
         mode: production ? 'production' : 'development',
         entry: {
-            frontend: './sources/frontend.js',
+            frontend: './src/frontend.js',
+            backend: './server/index.js',
         },
         output: {
-            path: path.join(__dirname, 'codebase'),
-            publicPath: '/codebase/',
+            path: path.join(__dirname, 'build'),
+            publicPath: '/build/',
             filename: 'js/[name].js',
             chunkFilename: 'js/[name].bundle.js',
         },
@@ -47,10 +48,10 @@ module.exports = function (env) {
         stats: 'minimal',
         resolve: {
             extensions: ['.js'],
-            modules: ['./sources', 'node_modules'],
+            modules: ['./src', 'node_modules'],
             alias: {
-                'jet-views': path.resolve(__dirname, 'sources/views'),
-                'jet-locales': path.resolve(__dirname, 'sources/locales'),
+                'jet-views': path.resolve(__dirname, 'src/views'),
+                'jet-locales': path.resolve(__dirname, 'src/locales'),
             },
         },
         plugins: [
