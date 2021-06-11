@@ -65,7 +65,7 @@ export default class StartView extends JetView {
                                         .ajax()
                                         .post('/api/token', payload)
                                         .then((data) => data.json())
-                                        .then((token) => {
+                                        .then(({ id, token }) => {
                                             const supervisor = new Supervisor({
                                                 url: 'https://dev04.proctoring.online',
                                             });
@@ -75,12 +75,18 @@ export default class StartView extends JetView {
                                                     provider: 'jwt',
                                                     token: token,
                                                 })
-                                                .then(() => supervisor.start())
+                                                .then(() => {
+                                                    return supervisor.start();
+                                                })
                                                 .catch((err) => {
                                                     alert(err.toString());
                                                     location.href = '/';
                                                 })
                                                 .then(() => {
+                                                    webix.storage.local.put(
+                                                        'session_id',
+                                                        id
+                                                    );
                                                     this.app.show(
                                                         '/layout/question/1'
                                                     );

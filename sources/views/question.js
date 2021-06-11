@@ -26,17 +26,28 @@ export default class DataView extends JetView {
                             setTimeout(() => {
                                 this.$$('error').hide();
                             }, 2000);
+                            return;
                         } else if (this._url[1].page === '5') {
                             this._nextUrl = '/layout/score';
-                            this.app.show(this._nextUrl);
                         } else {
                             this.$$('error').hide();
                             this.$$('options').setValue();
                             this._nextUrl = `/layout/question/${
                                 +this.getUrl()[1].page + 1
                             }`;
-                            this.app.show(this._nextUrl);
                         }
+
+                        const answers =
+                            view.parse(webix.storage.local.get('answers')) ||
+                            {};
+                        answers[this._url[1].page] =
+                            this.$$('options').getValue();
+                        webix.storage.local.put(
+                            'answers',
+                            JSON.stringify(answers)
+                        );
+
+                        this.app.show(this._nextUrl);
                     },
                 },
             ],

@@ -16,10 +16,11 @@ app.get('/', (req, res) => {
 
 app.post('/api/token', (req, res) => {
     const payload = req.body;
-    const token = jwt.sign({ id: uuidv4(), ...payload }, 'secret', {
+    const id = uuidv4();
+    const token = jwt.sign({ id, ...payload }, 'secret', {
         expiresIn: '2h',
     });
-    res.json(token);
+    res.json({ id, token });
 });
 
 app.listen(PORT, () => console.log('app running on port ', PORT));
