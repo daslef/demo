@@ -1,6 +1,6 @@
 const path = require('path');
+const passport = require('passport');
 
-const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET } = require('./config');
@@ -21,14 +21,6 @@ router.post(
         });
     }
 );
-
-// router.get('/auth', (req, res) => {
-//     if (req.user.id) {
-//         res.redirect('/profile');
-//     }
-
-//     res.redirect('/api/token');
-// });
 
 router.post('/login', async (req, res, next) => {
     passport.authenticate('login', async (err, user, info) => {

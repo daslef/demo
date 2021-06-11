@@ -1,11 +1,9 @@
-const jwt = require('jsonwebtoken');
-
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const JWTstrategy = require('passport-jwt').Strategy;
-const ExtractJWT = require('passport-jwt').ExtractJwt;
+const ExtractJwt = require('passport-jwt').ExtractJwt;
 
-const UserModel = require('../models');
+const UserModel = require('./models');
 
 const { JWT_SECRET } = require('./config');
 
@@ -66,7 +64,6 @@ passport.use(
                 ExtractJwt.fromHeader('token'),
                 ExtractJwt.fromAuthHeaderAsBearerToken(),
             ]),
-            jwtFromRequest: ExtractJWT.fromUrlQueryParameter('token'),
         },
         async (token, done) => {
             try {
@@ -77,5 +74,3 @@ passport.use(
         }
     )
 );
-
-// module.exports = router
