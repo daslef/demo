@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
+const nodeExternals = require('webpack-node-externals');
+
 module.exports = function (env) {
     var pack = require('./package.json');
     var MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,6 +16,9 @@ module.exports = function (env) {
     };
 
     var config = {
+        node: {
+            fs: 'empty',
+        },
         mode: production ? 'production' : 'development',
         entry: {
             frontend: './src/frontend.js',
@@ -25,6 +30,7 @@ module.exports = function (env) {
             filename: 'js/[name].js',
             chunkFilename: 'js/[name].bundle.js',
         },
+        externals: [nodeExternals()],
         module: {
             rules: [
                 {
@@ -50,6 +56,12 @@ module.exports = function (env) {
             extensions: ['.js'],
             modules: ['./src', 'node_modules'],
             alias: {
+                webix: path.resolve(
+                    __dirname,
+                    'node_modules',
+                    'webix',
+                    'webix.min.js'
+                ),
                 'jet-views': path.resolve(__dirname, 'src/views'),
                 'jet-locales': path.resolve(__dirname, 'src/locales'),
             },
@@ -65,9 +77,6 @@ module.exports = function (env) {
                 BUILD_AS_MODULE: asmodule || standalone,
             }),
         ],
-        devServer: {
-            stats: 'errors-only',
-        },
     };
 
     if (!production) {
