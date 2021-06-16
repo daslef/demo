@@ -61,15 +61,23 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/token', (req, res, next) => {
     const payload = req.body;
-    const token = jwt.sign({ id: uuid(), ...payload }, JWT_SECRET, {
-        expiresIn: '2h',
-    });
+    const token = jwt.sign(
+        {
+            id: uuid(),
+            link: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
+            ...payload,
+        },
+        JWT_SECRET,
+        {
+            expiresIn: '2h',
+        }
+    );
     console.log(req.body, token);
     res.json({ token });
 });
 
 router.post('/report', (req, res, next) => {
-    res.json('test');
+    res.json(req.body);
 });
 
 module.exports = {
