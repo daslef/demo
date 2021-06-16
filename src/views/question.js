@@ -28,6 +28,7 @@ export default class DataView extends JetView {
                             }, 2000);
                             return;
                         } else if (this._url[1].page === '5') {
+                            console.log(supervisor);
                             this._nextUrl = '/layout/score';
                         } else {
                             this.$$('error').hide();

@@ -13,12 +13,11 @@ export default class MyApp extends JetApp {
         };
 
         super({ ...defaults, ...config });
+        this.use(plugins.User, { model: session });
+        this.use(plugins.Locale, { lang: 'ru' });
     }
 }
 
 if (!BUILD_AS_MODULE) {
-    const app = new MyApp();
-    app.use(plugins.User, { model: session });
-    app.use(plugins.Locale, { lang: 'ru' });
-    webix.ready(() => app.render());
+    webix.ready(() => new MyApp().render());
 }

@@ -59,36 +59,6 @@ router.post('/login', async (req, res, next) => {
     })(req, res, next);
 });
 
-router.get('/data', (req, res, next) => {
-    res.json([
-        {
-            id: 1,
-            title: 'Столица Эквадора - это:',
-            options: ['Великобритания', 'Малайзия', 'Константинополь', 'Гаага'],
-        },
-        {
-            id: 2,
-            title: 'Президент Франции в 1989 году - это',
-            options: ['1', '2', '3', '4'],
-        },
-        {
-            id: 3,
-            title: 'Площадь Африки составляет:',
-            options: ['1', '2', '3', '4'],
-        },
-        {
-            id: 4,
-            title: 'Режиссер фильма "Долгая дорога" - ',
-            options: ['1', '2', '3', '4'],
-        },
-        {
-            id: 5,
-            title: 'Как называют сотрудников правопорядка в Греции?',
-            options: ['1', '2', '3'],
-        },
-    ]);
-});
-
 router.post('/token', (req, res, next) => {
     const payload = req.body;
     const token = jwt.sign({ id: uuid(), ...payload }, JWT_SECRET, {
