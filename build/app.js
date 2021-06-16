@@ -3180,11 +3180,15 @@
                                                             )
                                                         );
                                                     '5' === t._url[1].page
-                                                        ? (console.log(
-                                                              supervisor
-                                                          ),
-                                                          (t._nextUrl =
-                                                              '/layout/score'))
+                                                        ? supervisor &&
+                                                          supervisor
+                                                              .stop()
+                                                              .then(
+                                                                  function () {
+                                                                      t._nextUrl =
+                                                                          '/layout/score';
+                                                                  }
+                                                              )
                                                         : (t.$$('error').hide(),
                                                           t
                                                               .$$('options')
