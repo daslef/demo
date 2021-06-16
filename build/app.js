@@ -210,7 +210,7 @@
                             'Cannot call a class as a function'
                         );
                 }
-                n.d(e, { Gr: () => X, Dd: () => R, iC: () => x, UT: () => P });
+                n.d(e, { Gr: () => X, Dd: () => $, iC: () => x, UT: () => P });
                 var d = function t() {
                         y(this, t);
                     },
@@ -1810,10 +1810,10 @@
                             t
                         );
                     })(),
-                    E = !1;
-                function $(t) {
-                    if (!E && t) {
-                        E = !0;
+                    R = !1;
+                function E(t) {
+                    if (!R && t) {
+                        R = !0;
                         var e = window;
                         e.Promise || (e.Promise = t.promise);
                         var n = t.version.split('.');
@@ -1900,7 +1900,7 @@
                             );
                     }
                 }
-                var R = (function (t) {
+                var $ = (function (t) {
                     o(r, t);
                     var e = s(r);
                     function r(t) {
@@ -1908,7 +1908,7 @@
                         return (
                             y(this, r),
                             (t.router = t.router || P),
-                            $((n = e.call(this, t)).webix),
+                            E((n = e.call(this, t)).webix),
                             n
                         );
                     }
@@ -1932,14 +1932,14 @@
                 function C(t, e, n) {
                     for (var r in t) V(t, r) && e.call(n || t, t[r], r, t);
                 }
-                function U(t) {
+                function T(t) {
                     (t = 'Warning: ' + t),
                         'undefined' != typeof console && console.error(t);
                     try {
                         throw new Error(t);
                     } catch (t) {}
                 }
-                var T = String.prototype.replace,
+                var U = String.prototype.replace,
                     L = String.prototype.split,
                     D = '||||',
                     N = function (t) {
@@ -2051,10 +2051,10 @@
                         icelandic: ['is'],
                         slovenian: ['sl-SL'],
                     };
-                function M(t) {
+                function B(t) {
                     return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 }
-                var B = /\$/g,
+                var M = /\$/g,
                     F = /%\{(.*?)\}/g;
                 function q(t, e, n, r) {
                     if ('string' != typeof t)
@@ -2092,9 +2092,9 @@
                             ] || s[0]
                         ).replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
                     }
-                    return T.call(i, o, function (t, e) {
+                    return U.call(i, o, function (t, e) {
                         return V(u, e) && null != u[e]
-                            ? T.call(u[e], B, '$$')
+                            ? U.call(u[e], M, '$$')
                             : t;
                     });
                 }
@@ -2108,7 +2108,7 @@
                         'function' == typeof e.onMissingKey
                             ? e.onMissingKey
                             : n),
-                        (this.warn = e.warn || U),
+                        (this.warn = e.warn || T),
                         (this.tokenRegex = (function (t) {
                             var e = (t && t.prefix) || '%{',
                                 n = (t && t.suffix) || '}';
@@ -2116,7 +2116,7 @@
                                 throw new RangeError(
                                     '"||||" token is reserved for pluralization'
                                 );
-                            return new RegExp(M(e) + '(.*?)' + M(n), 'g');
+                            return new RegExp(B(e) + '(.*?)' + B(n), 'g');
                         })(e.interpolation));
                 }
                 (z.prototype.locale = function (t) {
@@ -2221,7 +2221,7 @@
                         t[n[r]] = e[r + 1] ? e[r + 1].page : '';
                 }
                 var W = window.webix;
-                W && $(W);
+                W && E(W);
                 var X = {
                         UnloadGuard: function (t, e, n) {
                             e.on(t, 'app:guard', function (t, r, i) {
@@ -2953,13 +2953,12 @@
                                     if (e.validate()) {
                                         var n = e.getValues();
                                         t.login(n.email, n.password)
-                                            .then(function (e) {
+                                            .then(function (t) {
                                                 !(function (t) {
                                                     throw new TypeError(
                                                         '"user" is read-only'
                                                     );
-                                                })(),
-                                                    console.log(t);
+                                                })();
                                             })
                                             .catch(function () {
                                                 webix.html.removeCss(
@@ -3179,17 +3178,8 @@
                                                                 2e3
                                                             )
                                                         );
-                                                    '5' === t._url[1].page
-                                                        ? supervisor &&
-                                                          supervisor
-                                                              .stop()
-                                                              .then(
-                                                                  function () {
-                                                                      t._nextUrl =
-                                                                          '/layout/score';
-                                                                  }
-                                                              )
-                                                        : (t.$$('error').hide(),
+                                                    '5' !== t._url[1].page
+                                                        ? (t.$$('error').hide(),
                                                           t
                                                               .$$('options')
                                                               .setValue(),
@@ -3197,8 +3187,37 @@
                                                               '/layout/question/'.concat(
                                                                   +t.getUrl()[1]
                                                                       .page + 1
-                                                              ))),
-                                                        t.app.show(t._nextUrl);
+                                                              )),
+                                                          t.app.show(
+                                                              t._nextUrl
+                                                          ))
+                                                        : supervisor &&
+                                                          (console.log(
+                                                              supervisor
+                                                          ),
+                                                          supervisor
+                                                              .stop()
+                                                              .then(
+                                                                  function () {
+                                                                      console.log(
+                                                                          'supervisor stopped'
+                                                                      );
+                                                                  }
+                                                              )
+                                                              .catch(function (
+                                                                  t
+                                                              ) {
+                                                                  return console.log(
+                                                                      t
+                                                                  );
+                                                              })
+                                                              .then(
+                                                                  function () {
+                                                                      return t.app.show(
+                                                                          '/layout/score'
+                                                                      );
+                                                                  }
+                                                              ));
                                                 },
                                             },
                                         ],
@@ -3237,7 +3256,137 @@
                     );
                 })(r.iC);
             },
-            131: () => {},
+            131: (t, e, n) => {
+                'use strict';
+                function r(t) {
+                    return (r =
+                        'function' == typeof Symbol &&
+                        'symbol' == typeof Symbol.iterator
+                            ? function (t) {
+                                  return typeof t;
+                              }
+                            : function (t) {
+                                  return t &&
+                                      'function' == typeof Symbol &&
+                                      t.constructor === Symbol &&
+                                      t !== Symbol.prototype
+                                      ? 'symbol'
+                                      : typeof t;
+                              })(t);
+                }
+                function i(t, e) {
+                    if (!(t instanceof e))
+                        throw new TypeError(
+                            'Cannot call a class as a function'
+                        );
+                }
+                function o(t, e) {
+                    for (var n = 0; n < e.length; n++) {
+                        var r = e[n];
+                        (r.enumerable = r.enumerable || !1),
+                            (r.configurable = !0),
+                            'value' in r && (r.writable = !0),
+                            Object.defineProperty(t, r.key, r);
+                    }
+                }
+                function u(t, e) {
+                    return (u =
+                        Object.setPrototypeOf ||
+                        function (t, e) {
+                            return (t.__proto__ = e), t;
+                        })(t, e);
+                }
+                function s(t, e) {
+                    return !e || ('object' !== r(e) && 'function' != typeof e)
+                        ? (function (t) {
+                              if (void 0 === t)
+                                  throw new ReferenceError(
+                                      "this hasn't been initialised - super() hasn't been called"
+                                  );
+                              return t;
+                          })(t)
+                        : e;
+                }
+                function a(t) {
+                    return (a = Object.setPrototypeOf
+                        ? Object.getPrototypeOf
+                        : function (t) {
+                              return t.__proto__ || Object.getPrototypeOf(t);
+                          })(t);
+                }
+                n.r(e), n.d(e, { default: () => c });
+                var c = (function (t) {
+                    !(function (t, e) {
+                        if ('function' != typeof e && null !== e)
+                            throw new TypeError(
+                                'Super expression must either be null or a function'
+                            );
+                        (t.prototype = Object.create(e && e.prototype, {
+                            constructor: {
+                                value: t,
+                                writable: !0,
+                                configurable: !0,
+                            },
+                        })),
+                            e && u(t, e);
+                    })(f, t);
+                    var e,
+                        n,
+                        r,
+                        c,
+                        l =
+                            ((r = f),
+                            (c = (function () {
+                                if (
+                                    'undefined' == typeof Reflect ||
+                                    !Reflect.construct
+                                )
+                                    return !1;
+                                if (Reflect.construct.sham) return !1;
+                                if ('function' == typeof Proxy) return !0;
+                                try {
+                                    return (
+                                        Boolean.prototype.valueOf.call(
+                                            Reflect.construct(
+                                                Boolean,
+                                                [],
+                                                function () {}
+                                            )
+                                        ),
+                                        !0
+                                    );
+                                } catch (t) {
+                                    return !1;
+                                }
+                            })()),
+                            function () {
+                                var t,
+                                    e = a(r);
+                                if (c) {
+                                    var n = a(this).constructor;
+                                    t = Reflect.construct(e, arguments, n);
+                                } else t = e.apply(this, arguments);
+                                return s(this, t);
+                            });
+                    function f() {
+                        return i(this, f), l.apply(this, arguments);
+                    }
+                    return (
+                        (e = f),
+                        (n = [
+                            {
+                                key: 'config',
+                                value: function () {
+                                    return {
+                                        cols: [{ template: 'Completed' }],
+                                    };
+                                },
+                            },
+                        ]) && o(e.prototype, n),
+                        f
+                    );
+                })(n(644).iC);
+            },
             39: (t, e, n) => {
                 'use strict';
                 function r(t) {

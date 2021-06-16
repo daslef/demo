@@ -43,7 +43,7 @@ export default class StartView extends JetView {
                                         return data.json();
                                     })
                                     .then(({ token }) => {
-                                        const supervisor = new Supervisor({
+                                        var supervisor = new Supervisor({
                                             url: 'https://dev04.proctoring.online',
                                         });
 

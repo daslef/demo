@@ -29,10 +29,16 @@ export default class DataView extends JetView {
                             return;
                         } else if (this._url[1].page === '5') {
                             if (supervisor) {
-                                supervisor.stop().then(() => {
-                                    this._nextUrl = '/layout/score';
-                                });
+                                console.log(supervisor);
+                                supervisor
+                                    .stop()
+                                    .then(() => {
+                                        console.log('supervisor stopped');
+                                    })
+                                    .catch((err) => console.log(err))
+                                    .then(() => this.app.show('/layout/score'));
                             }
+                            return;
                         } else {
                             this.$$('error').hide();
                             this.$$('options').setValue();
