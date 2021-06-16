@@ -33,7 +33,6 @@ router.post('/login', async (req, res, next) => {
     passport.authenticate('login', async (err, user, info) => {
         try {
             if (err || !user) {
-                console.log(user, err);
                 const error = new Error('An error occurred.');
                 // res.send(null)
                 return next(error);
@@ -47,8 +46,6 @@ router.post('/login', async (req, res, next) => {
                 const token = jwt.sign({ id: uuid(), user }, JWT_SECRET, {
                     expiresIn: '2h',
                 });
-
-                console.log(token);
 
                 return res.json({ token });
             });
@@ -64,7 +61,6 @@ router.post('/token', (req, res, next) => {
     const token = jwt.sign(
         {
             id: uuid(),
-            link: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
             ...payload,
         },
         JWT_SECRET,
@@ -72,7 +68,6 @@ router.post('/token', (req, res, next) => {
             expiresIn: '2h',
         }
     );
-    console.log(req.body, token);
     res.json({ token });
 });
 

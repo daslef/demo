@@ -54,7 +54,7 @@ export default class LoginView extends JetView {
             user.login(data.email, data.password)
                 .then((data) => {
                     user = data;
-                    console.log(user);
+                    // console.log(user);
                 })
                 .catch(function () {
                     webix.html.removeCss(form.$view, 'invalid_login');

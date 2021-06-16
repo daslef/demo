@@ -214,7 +214,7 @@
                 var d = function t() {
                         y(this, t);
                     },
-                    g = (function () {
+                    b = (function () {
                         function t(e) {
                             y(this, t),
                                 (this.webixJet = !0),
@@ -417,7 +417,7 @@
                             t
                         );
                     })();
-                function b(t) {
+                function g(t) {
                     '/' === t[0] && (t = t.substr(1));
                     for (
                         var e = t.split('/'), n = [], r = 0;
@@ -480,7 +480,7 @@
                                 (this._next = 1),
                                 (this.route =
                                     'string' == typeof e
-                                        ? { url: b(e), path: e }
+                                        ? { url: g(e), path: e }
                                         : e),
                                 (this.index = n);
                         }
@@ -548,7 +548,7 @@
                                             )),
                                             t)
                                         ) {
-                                            n = n.concat(b(t));
+                                            n = n.concat(g(t));
                                             for (var i = 0; i < n.length; i++)
                                                 r[i] && (n[i].view = r[i].view),
                                                     r[i] &&
@@ -693,7 +693,7 @@
                                         return (
                                             this._children.push(i),
                                             i.render(n, this._segment, this),
-                                            'object' !== r(t) || t instanceof g
+                                            'object' !== r(t) || t instanceof b
                                                 ? i
                                                 : i.getRoot()
                                         );
@@ -1092,7 +1092,7 @@
                             ]),
                             n
                         );
-                    })(g),
+                    })(b),
                     k = (function (t) {
                         o(n, t);
                         var e = s(n);
@@ -1216,10 +1216,10 @@
                                     key: 'copyConfig',
                                     value: function (t, e, n) {
                                         if (
-                                            ((t instanceof g ||
+                                            ((t instanceof b ||
                                                 ('function' == typeof t &&
                                                     t.prototype instanceof
-                                                        g)) &&
+                                                        b)) &&
                                                 (t = { $subview: t }),
                                             void 0 !== t.$subview)
                                         )
@@ -1231,7 +1231,7 @@
                                             var o = t[i];
                                             if (
                                                 ('function' == typeof o &&
-                                                    o.prototype instanceof g &&
+                                                    o.prototype instanceof b &&
                                                     (o = { $subview: o }),
                                                 !o ||
                                                     'object' !== r(o) ||
@@ -1417,11 +1417,11 @@
                                                     name: e,
                                                     router: S,
                                                 });
-                                            if (t.prototype instanceof g)
+                                            if (t.prototype instanceof b)
                                                 return new t(this, { name: e });
                                             t = t(this);
                                         }
-                                        return t instanceof g
+                                        return t instanceof b
                                             ? t
                                             : new k(this, { name: e, ui: t });
                                     },
@@ -1717,7 +1717,7 @@
                             ]),
                             n
                         );
-                    })(g),
+                    })(b),
                     P = (function () {
                         function t(e, n) {
                             var r = this;
@@ -1810,10 +1810,10 @@
                             t
                         );
                     })(),
-                    $ = !1;
-                function E(t) {
-                    if (!$ && t) {
-                        $ = !0;
+                    E = !1;
+                function $(t) {
+                    if (!E && t) {
+                        E = !0;
                         var e = window;
                         e.Promise || (e.Promise = t.promise);
                         var n = t.version.split('.');
@@ -1908,7 +1908,7 @@
                         return (
                             y(this, r),
                             (t.router = t.router || P),
-                            E((n = e.call(this, t)).webix),
+                            $((n = e.call(this, t)).webix),
                             n
                         );
                     }
@@ -1941,8 +1941,8 @@
                 }
                 var T = String.prototype.replace,
                     L = String.prototype.split,
-                    N = '||||',
-                    D = function (t) {
+                    D = '||||',
+                    N = function (t) {
                         var e = t % 10;
                         return 11 !== t && 1 === e
                             ? 0
@@ -1956,18 +1956,18 @@
                             var e = t % 100;
                             return e >= 3 && e <= 10 ? 3 : e >= 11 ? 4 : 5;
                         },
-                        bosnian_serbian: D,
+                        bosnian_serbian: N,
                         chinese: function () {
                             return 0;
                         },
-                        croatian: D,
+                        croatian: N,
                         french: function (t) {
                             return t > 1 ? 1 : 0;
                         },
                         german: function (t) {
                             return 1 !== t ? 1 : 0;
                         },
-                        russian: D,
+                        russian: N,
                         lithuanian: function (t) {
                             return t % 10 == 1 && t % 100 != 11
                                 ? 0
@@ -2066,7 +2066,7 @@
                         o = r || F,
                         u = 'number' == typeof e ? { smart_count: e } : e;
                     if (null != u.smart_count && i) {
-                        var s = L.call(i, N);
+                        var s = L.call(i, D);
                         i = (
                             s[
                                 (function (t, e) {
@@ -2112,7 +2112,7 @@
                         (this.tokenRegex = (function (t) {
                             var e = (t && t.prefix) || '%{',
                                 n = (t && t.suffix) || '}';
-                            if (e === N || n === N)
+                            if (e === D || n === D)
                                 throw new RangeError(
                                     '"||||" token is reserved for pluralization'
                                 );
@@ -2221,7 +2221,7 @@
                         t[n[r]] = e[r + 1] ? e[r + 1].page : '';
                 }
                 var W = window.webix;
-                W && E(W);
+                W && $(W);
                 var X = {
                         UnloadGuard: function (t, e, n) {
                             e.on(t, 'app:guard', function (t, r, i) {
@@ -3197,20 +3197,7 @@
                                                               '/layout/question/'.concat(
                                                                   +t.getUrl()[1]
                                                                       .page + 1
-                                                              )));
-                                                    var e =
-                                                        view.parse(
-                                                            webix.storage.local.get(
-                                                                'answers'
-                                                            )
-                                                        ) || {};
-                                                    (e[t._url[1].page] = t
-                                                        .$$('options')
-                                                        .getValue()),
-                                                        webix.storage.local.put(
-                                                            'answers',
-                                                            JSON.stringify(e)
-                                                        ),
+                                                              ))),
                                                         t.app.show(t._nextUrl);
                                                 },
                                             },
@@ -3380,6 +3367,7 @@
                                             template: 'default',
                                             subject:
                                                 this.$$('examName').getValue(),
+                                            link: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
                                         }
                                     );
                                 },
@@ -3437,41 +3425,34 @@
                                                                                     url: 'https://dev04.proctoring.online',
                                                                                 }
                                                                             );
-                                                                    console.log(
-                                                                        'sprv'
-                                                                    ),
-                                                                        console.log(
-                                                                            n
-                                                                        ),
-                                                                        r
-                                                                            .init(
-                                                                                {
-                                                                                    provider:
-                                                                                        'jwt',
-                                                                                    token: n,
-                                                                                }
-                                                                            )
-                                                                            .then(
-                                                                                function () {
-                                                                                    return r.start();
-                                                                                }
-                                                                            )
-                                                                            .catch(
-                                                                                function (
-                                                                                    t
-                                                                                ) {
-                                                                                    alert(
-                                                                                        t.toString()
-                                                                                    );
-                                                                                }
-                                                                            )
-                                                                            .then(
-                                                                                function () {
-                                                                                    t.app.show(
-                                                                                        '/layout/question/1'
-                                                                                    );
-                                                                                }
-                                                                            );
+                                                                    r.init({
+                                                                        provider:
+                                                                            'jwt',
+                                                                        token: n,
+                                                                    })
+                                                                        .then(
+                                                                            function () {
+                                                                                return r.start();
+                                                                            }
+                                                                        )
+                                                                        .catch(
+                                                                            function (
+                                                                                t
+                                                                            ) {
+                                                                                alert(
+                                                                                    t.toString()
+                                                                                ),
+                                                                                    (location.href =
+                                                                                        '/');
+                                                                            }
+                                                                        )
+                                                                        .then(
+                                                                            function () {
+                                                                                t.app.show(
+                                                                                    '/layout/question/1'
+                                                                                );
+                                                                            }
+                                                                        );
                                                                 });
                                                         },
                                                     },

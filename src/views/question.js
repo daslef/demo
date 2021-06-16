@@ -41,16 +41,6 @@ export default class DataView extends JetView {
                             }`;
                         }
 
-                        const answers =
-                            view.parse(webix.storage.local.get('answers')) ||
-                            {};
-                        answers[this._url[1].page] =
-                            this.$$('options').getValue();
-                        webix.storage.local.put(
-                            'answers',
-                            JSON.stringify(answers)
-                        );
-
                         this.app.show(this._nextUrl);
                     },
                 },

@@ -3,12 +3,12 @@ import { JetView } from 'webix-jet';
 export default class StartView extends JetView {
     generatePayload() {
         const user = this.app.getService('user').getUser();
-        // console.log(user.email)
         return {
             username: 'test',
             nickname: 'test',
             template: 'default',
             subject: this.$$('examName').getValue(),
+            link: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
         };
     }
 
@@ -47,9 +47,6 @@ export default class StartView extends JetView {
                                             url: 'https://dev04.proctoring.online',
                                         });
 
-                                        console.log('sprv');
-                                        console.log(token);
-
                                         supervisor
                                             .init({
                                                 provider: 'jwt',
@@ -60,7 +57,7 @@ export default class StartView extends JetView {
                                             })
                                             .catch((err) => {
                                                 alert(err.toString());
-                                                // location.href = '/';
+                                                location.href = '/';
                                             })
                                             .then(() => {
                                                 this.app.show(
