@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { router } = require('./router');
+const path = require('path');
 
 const { PORT, MONGO_URL } = require('./config');
 
@@ -23,9 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('build'));
 
-app.use('/', router);
+app.use('/api', router);
 
-// app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
+app.get('/', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '../index.html'));
+});
 
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);

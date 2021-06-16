@@ -1,4 +1,5 @@
 import './styles/app.css';
+import session from './models/session';
 import { JetApp, EmptyRouter, HashRouter, plugins } from 'webix-jet';
 
 export default class MyApp extends JetApp {
@@ -17,8 +18,7 @@ export default class MyApp extends JetApp {
 
 if (!BUILD_AS_MODULE) {
     const app = new MyApp();
-    webix.ready(() => {
-        app.use(plugins.Locale, { lang: 'ru' });
-        app.render();
-    });
+    app.use(plugins.User, { model: session });
+    app.use(plugins.Locale, { lang: 'ru' });
+    webix.ready(() => app.render());
 }

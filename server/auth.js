@@ -37,15 +37,13 @@ passport.use(
             try {
                 const user = await UserModel.findOne({ email });
 
-                if (!user) {
+                if (!user)
                     return done(null, false, { message: 'User not found' });
-                }
 
                 const validate = await user.isValidPassword(password);
 
-                if (!validate) {
+                if (!validate)
                     return done(null, false, { message: 'Wrong Password' });
-                }
 
                 return done(null, user, { message: 'Logged in Successfully' });
             } catch (error) {

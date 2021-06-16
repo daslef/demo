@@ -1,41 +1,32 @@
 var path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var webpack = require('webpack');
 
-const nodeExternals = require('webpack-node-externals');
-
 module.exports = function (env) {
-    var pack = require('./package.json');
-    var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+    const pack = require('./package.json');
+    const production = !!(env && env.production === 'true');
+    const asmodule = !!(env && env.module === 'true');
+    const standalone = !!(env && env.standalone === 'true');
 
-    var production = !!(env && env.production === 'true');
-    var asmodule = !!(env && env.module === 'true');
-    var standalone = !!(env && env.standalone === 'true');
-
-    var babelSettings = {
-        extends: path.join(__dirname, '/.babelrc'),
-    };
-
-    var config = {
-        node: {
-            fs: 'empty',
-        },
+    const config = {
         mode: production ? 'production' : 'development',
         entry: {
-            frontend: './src/frontend.js',
-            backend: './server/index.js',
+            app: './src/frontend.js',
         },
         output: {
             path: path.join(__dirname, 'build'),
             publicPath: '/build/',
-            filename: 'js/[name].js',
-            chunkFilename: 'js/[name].bundle.js',
+            filename: '[name].js',
+            chunkFilename: '[name].bundle.js',
         },
-        externals: [nodeExternals()],
         module: {
             rules: [
                 {
                     test: /\.js$/,
-                    use: 'babel-loader?' + JSON.stringify(babelSettings),
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
                 },
                 {
                     test: /\.(svg|png|jpg|gif)$/,
@@ -56,19 +47,13 @@ module.exports = function (env) {
             extensions: ['.js'],
             modules: ['./src', 'node_modules'],
             alias: {
-                webix: path.resolve(
-                    __dirname,
-                    'node_modules',
-                    'webix',
-                    'webix.min.js'
-                ),
                 'jet-views': path.resolve(__dirname, 'src/views'),
                 'jet-locales': path.resolve(__dirname, 'src/locales'),
             },
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: '/css/style.css',
+                filename: '[name].css',
             }),
             new webpack.DefinePlugin({
                 VERSION: `"${pack.version}"`,
