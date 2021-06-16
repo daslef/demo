@@ -77,6 +77,7 @@ router.post('/token', (req, res, next) => {
 });
 
 router.post('/report', (req, res, next) => {
+    console.log(req.body);
     res.json(req.body);
 });
 
