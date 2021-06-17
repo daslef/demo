@@ -14,7 +14,7 @@ export default class MyApp extends JetApp {
 
         super({ ...defaults, ...config });
         this.use(plugins.User, { model: session });
-        this.use(plugins.Locale, { lang: 'ru' });
+        this.use(plugins.Locale, { lang: 'ru', storage: webix.storage.local });
     }
 }
 

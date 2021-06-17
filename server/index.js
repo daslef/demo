@@ -1,9 +1,10 @@
 const express = require('express');
+const session = require('express-session');
 const mongoose = require('mongoose');
 const { router } = require('./router');
 const path = require('path');
 
-const { PORT, MONGO_URL } = require('./config');
+const { PORT, MONGO_URL, SESSION_SECRET } = require('./config');
 
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
@@ -19,6 +20,15 @@ require('./auth');
 // const collection = mongoClient.db('demo').collection('users');
 
 const app = express();
+
+app.use(
+    session({
+        secret: SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 60 * 60 },
+    })
+);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

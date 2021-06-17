@@ -3981,7 +3981,10 @@
                         (r = u.call(this, o(o({}, i), n))).use(e.Gr.User, {
                             model: t,
                         }),
-                        r.use(e.Gr.Locale, { lang: 'ru' }),
+                        r.use(e.Gr.Locale, {
+                            lang: 'ru',
+                            storage: webix.storage.local,
+                        }),
                         r
                     );
                 }
