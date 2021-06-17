@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const { router } = require('./router');
 const path = require('path');
@@ -21,14 +22,17 @@ require('./auth');
 
 const app = express();
 
-app.use(
-    session({
-        secret: SESSION_SECRET,
-        resave: false,
-        saveUninitialized: true,
-        cookie: { maxAge: 60 * 60 },
-    })
-);
+// app.use(
+//     session({
+//         secret: SESSION_SECRET,
+//         resave: false,
+//         saveUninitialized: true,
+//         cookie: { maxAge: 60 * 60 },
+//     })
+// );
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
