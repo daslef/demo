@@ -28,9 +28,8 @@ export default class DataView extends JetView {
                             }, 2000);
                             return;
                         } else if (this._url[1].page === '5') {
-                            if (supervisor) {
-                                console.log(supervisor);
-                                supervisor
+                            if (window.supervisor) {
+                                window.supervisor
                                     .stop()
                                     .then(() => {
                                         console.log('supervisor stopped');
