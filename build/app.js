@@ -3610,7 +3610,7 @@
                                             template: 'default',
                                             subject:
                                                 this.$$('examName').getValue(),
-                                            link: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
+                                            api: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
                                         }
                                     );
                                 },
