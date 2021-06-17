@@ -210,7 +210,7 @@
                             'Cannot call a class as a function'
                         );
                 }
-                n.d(e, { Gr: () => X, Dd: () => $, iC: () => x, UT: () => P });
+                n.d(e, { Gr: () => X, Dd: () => $, iC: () => x, UT: () => j });
                 var d = function t() {
                         y(this, t);
                     },
@@ -1145,7 +1145,7 @@
                         );
                     })(),
                     O = !0,
-                    j = (function (t) {
+                    P = (function (t) {
                         o(n, t);
                         var e = s(n);
                         function n(t) {
@@ -1718,7 +1718,7 @@
                             n
                         );
                     })(b),
-                    P = (function () {
+                    j = (function () {
                         function t(e, n) {
                             var r = this;
                             y(this, t),
@@ -1907,7 +1907,7 @@
                         var n;
                         return (
                             y(this, r),
-                            (t.router = t.router || P),
+                            (t.router = t.router || j),
                             E((n = e.call(this, t)).webix),
                             n
                         );
@@ -1925,7 +1925,7 @@
                         ]),
                         r
                     );
-                })(j);
+                })(P);
                 function V(t, e) {
                     return Object.prototype.hasOwnProperty.call(t, e);
                 }
@@ -1940,9 +1940,9 @@
                     } catch (t) {}
                 }
                 var U = String.prototype.replace,
-                    L = String.prototype.split,
-                    D = '||||',
-                    N = function (t) {
+                    Q = String.prototype.split,
+                    L = '||||',
+                    I = function (t) {
                         var e = t % 10;
                         return 11 !== t && 1 === e
                             ? 0
@@ -1950,24 +1950,24 @@
                             ? 1
                             : 2;
                     },
-                    A = {
+                    D = {
                         arabic: function (t) {
                             if (t < 3) return t;
                             var e = t % 100;
                             return e >= 3 && e <= 10 ? 3 : e >= 11 ? 4 : 5;
                         },
-                        bosnian_serbian: N,
+                        bosnian_serbian: I,
                         chinese: function () {
                             return 0;
                         },
-                        croatian: N,
+                        croatian: I,
                         french: function (t) {
                             return t > 1 ? 1 : 0;
                         },
                         german: function (t) {
                             return 1 !== t ? 1 : 0;
                         },
-                        russian: N,
+                        russian: I,
                         lithuanian: function (t) {
                             return t % 10 == 1 && t % 100 != 11
                                 ? 0
@@ -2003,7 +2003,7 @@
                                 : 3;
                         },
                     },
-                    I = {
+                    N = {
                         arabic: ['ar'],
                         bosnian_serbian: [
                             'bs-Latn-BA',
@@ -2051,31 +2051,31 @@
                         icelandic: ['is'],
                         slovenian: ['sl-SL'],
                     };
-                function B(t) {
+                function A(t) {
                     return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 }
-                var M = /\$/g,
-                    F = /%\{(.*?)\}/g;
-                function q(t, e, n, r) {
+                var B = /\$/g,
+                    M = /%\{(.*?)\}/g;
+                function F(t, e, n, r) {
                     if ('string' != typeof t)
                         throw new TypeError(
                             'Polyglot.transformPhrase expects argument #1 to be string'
                         );
                     if (null == e) return t;
                     var i = t,
-                        o = r || F,
+                        o = r || M,
                         u = 'number' == typeof e ? { smart_count: e } : e;
                     if (null != u.smart_count && i) {
-                        var s = L.call(i, D);
+                        var s = Q.call(i, L);
                         i = (
                             s[
                                 (function (t, e) {
-                                    return A[
+                                    return D[
                                         (function (t) {
                                             var e,
                                                 n =
                                                     ((e = {}),
-                                                    C(I, function (t, n) {
+                                                    C(N, function (t, n) {
                                                         C(t, function (t) {
                                                             e[t] = n;
                                                         });
@@ -2083,7 +2083,7 @@
                                                     e);
                                             return (
                                                 n[t] ||
-                                                n[L.call(t, /-/, 1)[0]] ||
+                                                n[Q.call(t, /-/, 1)[0]] ||
                                                 n.en
                                             );
                                         })(t)
@@ -2094,16 +2094,16 @@
                     }
                     return U.call(i, o, function (t, e) {
                         return V(u, e) && null != u[e]
-                            ? U.call(u[e], M, '$$')
+                            ? U.call(u[e], B, '$$')
                             : t;
                     });
                 }
-                function z(t) {
+                function q(t) {
                     var e = t || {};
                     (this.phrases = {}),
                         this.extend(e.phrases || {}),
                         (this.currentLocale = e.locale || 'en');
-                    var n = e.allowMissing ? q : null;
+                    var n = e.allowMissing ? F : null;
                     (this.onMissingKey =
                         'function' == typeof e.onMissingKey
                             ? e.onMissingKey
@@ -2112,17 +2112,17 @@
                         (this.tokenRegex = (function (t) {
                             var e = (t && t.prefix) || '%{',
                                 n = (t && t.suffix) || '}';
-                            if (e === D || n === D)
+                            if (e === L || n === L)
                                 throw new RangeError(
                                     '"||||" token is reserved for pluralization'
                                 );
-                            return new RegExp(B(e) + '(.*?)' + B(n), 'g');
+                            return new RegExp(A(e) + '(.*?)' + A(n), 'g');
                         })(e.interpolation));
                 }
-                (z.prototype.locale = function (t) {
+                (q.prototype.locale = function (t) {
                     return t && (this.currentLocale = t), this.currentLocale;
                 }),
-                    (z.prototype.extend = function (t, e) {
+                    (q.prototype.extend = function (t, e) {
                         C(
                             t,
                             function (t, n) {
@@ -2134,7 +2134,7 @@
                             this
                         );
                     }),
-                    (z.prototype.unset = function (t, e) {
+                    (q.prototype.unset = function (t, e) {
                         'string' == typeof t
                             ? delete this.phrases[t]
                             : C(
@@ -2148,13 +2148,13 @@
                                   this
                               );
                     }),
-                    (z.prototype.clear = function () {
+                    (q.prototype.clear = function () {
                         this.phrases = {};
                     }),
-                    (z.prototype.replace = function (t) {
+                    (q.prototype.replace = function (t) {
                         this.clear(), this.extend(t);
                     }),
-                    (z.prototype.t = function (t, e) {
+                    (q.prototype.t = function (t, e) {
                         var n,
                             r,
                             i = null == e ? {} : e;
@@ -2175,7 +2175,7 @@
                                   ),
                                   (r = t)),
                             'string' == typeof n &&
-                                (r = q(
+                                (r = F(
                                     n,
                                     i,
                                     this.currentLocale,
@@ -2184,13 +2184,13 @@
                             r
                         );
                     }),
-                    (z.prototype.has = function (t) {
+                    (q.prototype.has = function (t) {
                         return V(this.phrases, t);
                     }),
-                    (z.transformPhrase = function (t, e, n) {
-                        return q(t, e, n);
+                    (q.transformPhrase = function (t, e, n) {
+                        return F(t, e, n);
                     });
-                var Q = z;
+                var z = q;
                 function K(t, e, n) {
                     e.urls
                         ? (n = e.urls[n] || n)
@@ -2243,7 +2243,7 @@
                                 n.__esModule && (n = n.default);
                                 var s = { phrases: n };
                                 r.polyglot && t.webix.extend(s, r.polyglot);
-                                var c = (a.polyglot = new Q(s));
+                                var c = (a.polyglot = new z(s));
                                 if (
                                     (c.locale(e),
                                     (a._ = t.webix.bind(c.t, c)),
@@ -2534,17 +2534,43 @@
                     Y = window;
                 Y.Promise || (Y.Promise = Y.webix.promise);
             },
+            827: (t, e, n) => {
+                'use strict';
+                n.r(e), n.d(e, { default: () => r });
+                const r = {
+                    Preparation: 'Preparation',
+                    'Question 1': 'Question 1',
+                    'Question 2': 'Question 2',
+                    'Question 3': 'Question 3',
+                    'Question 4': 'Question 4',
+                    'Question 5': 'Question 5',
+                    Score: 'Score',
+                };
+            },
+            699: (t, e, n) => {
+                'use strict';
+                n.r(e), n.d(e, { default: () => r });
+                const r = {
+                    Preparation: 'Preparación',
+                    'Question 1': 'Pregunta 1',
+                    'Question 2': 'Pregunta 2',
+                    'Question 3': 'Pregunta 3',
+                    'Question 4': 'Pregunta 4',
+                    'Question 5': 'Pregunta 5',
+                    Score: 'Resultado',
+                };
+            },
             801: (t, e, n) => {
                 'use strict';
                 n.r(e), n.d(e, { default: () => r });
                 const r = {
-                    Preparation: 'Подключение',
+                    Preparation: 'Подготовка',
                     'Question 1': 'Вопрос 1',
                     'Question 2': 'Вопрос 2',
                     'Question 3': 'Вопрос 3',
                     'Question 4': 'Вопрос 4',
                     'Question 5': 'Вопрос 5',
-                    Score: 'Заключение',
+                    Score: 'Результат',
                 };
             },
             748: (t, e, n) => {
@@ -2669,6 +2695,11 @@
                             {
                                 key: 'config',
                                 value: function () {
+                                    var t,
+                                        e,
+                                        n,
+                                        r = this,
+                                        i = this.app.getService('locale')._;
                                     return {
                                         type: 'clean',
                                         paddingX: 5,
@@ -2680,14 +2711,62 @@
                                                         css: 'webix_shadow_medium',
                                                         rows: [
                                                             {
+                                                                name: 'lang',
+                                                                view: 'segmented',
+                                                                label: '',
+                                                                options: [
+                                                                    {
+                                                                        id: 'en',
+                                                                        value: 'English',
+                                                                    },
+                                                                    {
+                                                                        id: 'ru',
+                                                                        value: 'Russian',
+                                                                    },
+                                                                    {
+                                                                        id: 'es',
+                                                                        value: 'Spanish',
+                                                                    },
+                                                                ],
+                                                                click: function () {
+                                                                    var t =
+                                                                            r.app.getService(
+                                                                                'locale'
+                                                                            ),
+                                                                        e = r
+                                                                            .getRoot()
+                                                                            .queryView(
+                                                                                {
+                                                                                    name: 'lang',
+                                                                                }
+                                                                            )
+                                                                            .getValue();
+                                                                    t.setLang(
+                                                                        e
+                                                                    );
+                                                                },
+                                                                value: this.app
+                                                                    .getService(
+                                                                        'locale'
+                                                                    )
+                                                                    .getLang(),
+                                                            },
+                                                            {
                                                                 type: 'header',
                                                                 template:
                                                                     'Quiz',
                                                                 css: 'webix_header app_header',
                                                             },
-                                                            {
+                                                            ((n = function (t) {
+                                                                return i(
+                                                                    t.value
+                                                                );
+                                                            }),
+                                                            (e = 'template') in
+                                                            (t = {
                                                                 view: 'menu',
                                                                 id: 'top:menu',
+                                                                localId: 'menu',
                                                                 css: 'app_menu',
                                                                 width: 220,
                                                                 layout: 'y',
@@ -2706,32 +2785,47 @@
                                                                         icon: 'wxi-pencil',
                                                                     },
                                                                     {
-                                                                        value: 'Вопрос 2',
+                                                                        value: 'Question 2',
                                                                         id: 'question/2',
                                                                         icon: 'wxi-pencil',
                                                                     },
                                                                     {
-                                                                        value: 'Вопрос 3',
+                                                                        value: 'Question 3',
                                                                         id: 'question/3',
                                                                         icon: 'wxi-pencil',
                                                                     },
                                                                     {
-                                                                        value: 'Вопрос 4',
+                                                                        value: 'Question 4',
                                                                         id: 'question/4',
                                                                         icon: 'wxi-pencil',
                                                                     },
                                                                     {
-                                                                        value: 'Вопрос 5',
+                                                                        value: 'Question 5',
                                                                         id: 'question/5',
                                                                         icon: 'wxi-pencil',
                                                                     },
                                                                     {
-                                                                        value: 'Заключение',
+                                                                        value: 'Score',
                                                                         id: 'score',
                                                                         icon: 'wxi-columns',
                                                                     },
                                                                 ],
-                                                            },
+                                                            })
+                                                                ? Object.defineProperty(
+                                                                      t,
+                                                                      e,
+                                                                      {
+                                                                          value: n,
+                                                                          enumerable:
+                                                                              !0,
+                                                                          configurable:
+                                                                              !0,
+                                                                          writable:
+                                                                              !0,
+                                                                      }
+                                                                  )
+                                                                : (t[e] = n),
+                                                            t),
                                                         ],
                                                     },
                                                 ],
@@ -3617,7 +3711,14 @@
                 })(n(644).iC);
             },
             755: (t, e, n) => {
-                var r = { './ru': 801, './ru.js': 801 };
+                var r = {
+                    './en': 827,
+                    './en.js': 827,
+                    './es': 699,
+                    './es.js': 699,
+                    './ru': 801,
+                    './ru.js': 801,
+                };
                 function i(t) {
                     var e = o(t);
                     return n(e);
@@ -3706,7 +3807,7 @@
                         .ajax()
                         .post('api/login', { email: t, password: e })
                         .then(function (t) {
-                            return t.json();
+                            return localStorage.setItem('token', t), t.json();
                         });
                 },
                 logout: function () {
@@ -3714,7 +3815,7 @@
                         .ajax()
                         .post('api/logout')
                         .then(function (t) {
-                            return t.json();
+                            return localStorage.removeItem('token'), t.json();
                         });
                 },
             };

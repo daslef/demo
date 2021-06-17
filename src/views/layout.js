@@ -2,9 +2,13 @@ import { JetView, plugins } from 'webix-jet';
 
 export default class TopView extends JetView {
     config() {
+        const _ = this.app.getService('locale')._;
+        const lang = this.app.getService('locale').getLang();
+
         var menu = {
             view: 'menu',
             id: 'top:menu',
+            localId: 'menu',
             css: 'app_menu',
             width: 220,
             layout: 'y',
@@ -13,12 +17,13 @@ export default class TopView extends JetView {
             data: [
                 { value: 'Preparation', id: 'start', icon: 'wxi-columns' },
                 { value: 'Question 1', id: 'question/1', icon: 'wxi-pencil' },
-                { value: 'Вопрос 2', id: 'question/2', icon: 'wxi-pencil' },
-                { value: 'Вопрос 3', id: 'question/3', icon: 'wxi-pencil' },
-                { value: 'Вопрос 4', id: 'question/4', icon: 'wxi-pencil' },
-                { value: 'Вопрос 5', id: 'question/5', icon: 'wxi-pencil' },
-                { value: 'Заключение', id: 'score', icon: 'wxi-columns' },
+                { value: 'Question 2', id: 'question/2', icon: 'wxi-pencil' },
+                { value: 'Question 3', id: 'question/3', icon: 'wxi-pencil' },
+                { value: 'Question 4', id: 'question/4', icon: 'wxi-pencil' },
+                { value: 'Question 5', id: 'question/5', icon: 'wxi-pencil' },
+                { value: 'Score', id: 'score', icon: 'wxi-columns' },
             ],
+            template: (obj) => _(obj.value),
         };
 
         return {
@@ -31,6 +36,25 @@ export default class TopView extends JetView {
                         {
                             css: 'webix_shadow_medium',
                             rows: [
+                                {
+                                    name: 'lang',
+                                    view: 'segmented',
+                                    label: '',
+                                    options: [
+                                        { id: 'en', value: 'English' },
+                                        { id: 'ru', value: 'Russian' },
+                                        { id: 'es', value: 'Spanish' },
+                                    ],
+                                    click: () => {
+                                        const langs =
+                                            this.app.getService('locale');
+                                        const value = this.getRoot()
+                                            .queryView({ name: 'lang' })
+                                            .getValue();
+                                        langs.setLang(value);
+                                    },
+                                    value: lang,
+                                },
                                 {
                                     type: 'header',
                                     template: 'Quiz',

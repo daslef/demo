@@ -12,14 +12,20 @@ function login(email, password) {
             email,
             password,
         })
-        .then((a) => a.json());
+        .then((a) => {
+            localStorage.setItem('token', a);
+            return a.json();
+        });
 }
 
 function logout() {
     return webix
         .ajax()
         .post('api/logout')
-        .then((a) => a.json());
+        .then((a) => {
+            localStorage.removeItem('token');
+            return a.json();
+        });
 }
 
 export default {
