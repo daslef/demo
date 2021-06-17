@@ -9,7 +9,7 @@ const router = require('express').Router();
 
 router.post(
     '/signup',
-    passport.authenticate('signup', { session: true }),
+    passport.authenticate('signup', { session: false }),
     async (req, res, next) => {
         res.json({
             message: 'Signup successful',
@@ -21,7 +21,7 @@ router.post(
 router.post('/logout', (req, res) => {
     req.logout();
     // delete req.session.user;
-    // res.send({});
+    res.send({});
 });
 
 router.post('/login/status', (req, res) => {
@@ -37,7 +37,7 @@ router.post('/login', async (req, res, next) => {
                 return next(error);
             }
 
-            req.login(user, { session: true }, async (error) => {
+            req.login(user, { session: false }, async (error) => {
                 if (error) {
                     return next(error);
                 }

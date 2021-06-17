@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const { router } = require('./router');
 const path = require('path');
 
-const { PORT, MONGO_URL, SESSION_SECRET } = require('./config');
+const { PORT, MONGO_URL } = require('./config');
 
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
@@ -22,20 +22,11 @@ require('./auth');
 
 const app = express();
 
-// app.use(
-//     session({
-//         secret: SESSION_SECRET,
-//         resave: false,
-//         saveUninitialized: true,
-//         cookie: { maxAge: 60 * 60 },
-//     })
-// );
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(passport.initialize());
+
 app.use(express.static('build'));
 
 app.use('/api', router);
