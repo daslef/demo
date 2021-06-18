@@ -3796,6 +3796,9 @@
                         .post('api/login/status')
                         .then(function (t) {
                             return t.json();
+                        })
+                        .then(function (t) {
+                            return console.log(t);
                         });
                 },
                 login: function (t, e) {

@@ -7,6 +7,14 @@ const UserModel = require('./models');
 
 const { JWT_SECRET } = require('./config');
 
+passport.serializeUser(function (data, done) {
+    done(null, data);
+});
+
+passport.deserializeUser(function (data, done) {
+    done(null, data);
+});
+
 passport.use(
     'signup',
     new localStrategy(
@@ -69,7 +77,7 @@ passport.use(
                 if (!user) return done(null, false);
                 console.log(user);
                 // user?
-                return done(null, payload.user);
+                return done(null, { id: user.id, email: user.email });
             } catch (error) {
                 return done(error);
             }

@@ -44,17 +44,12 @@ router.post('/token', (req, res, next) => {
 });
 
 router.use((req, res, next) => {
-    // console.log(req.headers)
-    passport.authenticate(
-        'session',
-        { session: false },
-        function (error, payload) {
-            if (error || !payload) {
-                return next(error);
-            }
-            req.login(payload, next);
+    passport.authenticate('session', function (error, payload) {
+        if (error || !payload) {
+            return next(error);
         }
-    )(req, res, next);
+        req.login(payload, next);
+    })(req, res, next);
 });
 
 router.post('/login/status', (req, res, next) => {

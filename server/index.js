@@ -16,8 +16,6 @@ mongoose.set('useCreateIndex', true);
 
 mongoose.connection.on('error', (error) => console.log(error));
 
-require('./auth');
-
 // const collection = mongoClient.db('demo').collection('users');
 
 const app = express();
@@ -26,6 +24,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(passport.initialize());
+
+require('./auth');
 
 app.use(express.static('build'));
 
