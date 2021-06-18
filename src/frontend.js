@@ -19,5 +19,15 @@ export default class MyApp extends JetApp {
 }
 
 if (!BUILD_AS_MODULE) {
-    webix.ready(() => new MyApp().render());
+    webix.ready(() => {
+        webix.attachEvent(
+            'onBeforeAjax',
+            function (mode, url, data, request, headers) {
+                headers['Authorization'] = `Bearer ${localStorage.getItem(
+                    'token'
+                )}`;
+            }
+        );
+        return new MyApp().render();
+    });
 }

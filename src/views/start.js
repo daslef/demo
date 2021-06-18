@@ -3,6 +3,7 @@ import { JetView } from 'webix-jet';
 export default class StartView extends JetView {
     generatePayload() {
         const user = this.app.getService('user').getUser();
+        // разобрать user и попробовать отправить
         return {
             username: 'test',
             nickname: 'test',

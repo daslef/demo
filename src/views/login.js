@@ -51,18 +51,13 @@ export default class LoginView extends JetView {
 
         if (form.validate()) {
             const data = form.getValues();
-            user.login(data.email, data.password)
-                .then((data) => {
-                    user = data;
-                    // console.log(user);
-                })
-                .catch(function () {
-                    webix.html.removeCss(form.$view, 'invalid_login');
-                    form.elements.password.focus();
-                    webix.delay(function () {
-                        webix.html.addCss(form.$view, 'invalid_login');
-                    });
+            user.login(data.email, data.password).catch(function () {
+                webix.html.removeCss(form.$view, 'invalid_login');
+                form.elements.password.focus();
+                webix.delay(function () {
+                    webix.html.addCss(form.$view, 'invalid_login');
                 });
+            });
         }
     }
 }

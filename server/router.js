@@ -20,47 +20,56 @@ router.post(
 
 router.post('/logout', (req, res) => {
     req.logout();
-    // delete req.session.user;
-    res.send({});
+    res.json({});
 });
 
-router.post('/login/status', (req, res) => {
-    res.send(req.user || null);
-});
+router.post(
+    '/login',
+    passport.authenticate('login', { session: false }),
+    function (req, res, next) {
+        res.json(req.user);
+    }
+);
 
-router.post('/login', async (req, res, next) => {
-    passport.authenticate('login', async (err, user, info) => {
-        try {
-            if (err || !user) {
-                const error = new Error('An error occurred.');
-                // res.send(null)
-                return next(error);
-            }
-
-            req.login(user, { session: false }, async (error) => {
-                if (error) {
-                    return next(error);
-                }
-
-                const token = jwt.sign({ id: uuid(), user }, JWT_SECRET, {
-                    expiresIn: '2h',
-                });
-
-                return res.json({ token });
-            });
-        } catch (error) {
-            // res.send(null)
-            return next(error);
-        }
-    })(req, res, next);
+router.post('/report', (req, res) => {
+    res.json(req.body);
 });
 
 router.post('/token', (req, res, next) => {
-    const payload = req.body;
+    const token = jwt.sign({ user: req.body }, JWT_SECRET, {
+        expiresIn: '2h',
+    });
+
+    res.json({ token: token });
+});
+
+router.use((req, res, next) => {
+    // console.log(req.headers)
+    passport.authenticate(
+        'session',
+        { session: false },
+        function (error, payload) {
+            if (error || !payload) {
+                return next(error);
+            }
+            req.login(payload, next);
+        }
+    )(req, res, next);
+});
+
+router.post('/login/status', (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    res.json(req.user || null);
+});
+
+router.get('/token', (req, res, next) => {
+    const user = req.user;
     const token = jwt.sign(
         {
             id: uuid(),
-            ...payload,
+            ...user,
         },
         JWT_SECRET,
         {
@@ -68,11 +77,6 @@ router.post('/token', (req, res, next) => {
         }
     );
     res.json({ token });
-});
-
-router.post('/report', (req, res, next) => {
-    console.log(req.body);
-    res.json(req.body);
 });
 
 module.exports = {

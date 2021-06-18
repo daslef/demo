@@ -36,7 +36,6 @@ passport.use(
         async (email, password, done) => {
             try {
                 const user = await UserModel.findOne({ email });
-
                 if (!user)
                     return done(null, false, { message: 'User not found' });
 
@@ -54,20 +53,25 @@ passport.use(
 );
 
 passport.use(
+    'session',
     new JWTstrategy(
         {
             secretOrKey: JWT_SECRET,
-            jwtFromRequest: ExtractJwt.fromExtractors([
-                ExtractJwt.fromUrlQueryParameter('token'),
-                ExtractJwt.fromHeader('token'),
-                ExtractJwt.fromAuthHeaderAsBearerToken(),
-            ]),
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         },
-        async (token, done) => {
+
+        async (payload, done) => {
             try {
-                return done(null, token.user);
+                const user = await UserModel.findOne({
+                    email: payload.user.email,
+                });
+
+                if (!user) return done(null, false);
+                console.log(user);
+                // user?
+                return done(null, payload.user);
             } catch (error) {
-                done(error);
+                return done(error);
             }
         }
     )

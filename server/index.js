@@ -29,15 +29,14 @@ app.use(passport.initialize());
 
 app.use(express.static('build'));
 
-app.use('/api', router);
-
-app.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
 
+app.use('/api', router);
+
 app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({ error: err });
+    res.status(err.status || 500).json({ error: err });
 });
 
 app.listen(PORT, () => console.log('app running on port ', PORT));

@@ -64,7 +64,7 @@
                             return (t.__proto__ = e), t;
                         })(t, e);
                 }
-                function s(t) {
+                function a(t) {
                     var e = (function () {
                         if ('undefined' == typeof Reflect || !Reflect.construct)
                             return !1;
@@ -92,10 +92,10 @@
                             var i = l(this).constructor;
                             n = Reflect.construct(r, arguments, i);
                         } else n = r.apply(this, arguments);
-                        return a(this, n);
+                        return s(this, n);
                     };
                 }
-                function a(t, e) {
+                function s(t, e) {
                     return !e || ('object' !== r(e) && 'function' != typeof e)
                         ? c(t)
                         : e;
@@ -166,7 +166,7 @@
                     }
                     var o,
                         u = !0,
-                        s = !1;
+                        a = !1;
                     return {
                         s: function () {
                             n = n.call(t);
@@ -176,13 +176,13 @@
                             return (u = t.done), t;
                         },
                         e: function (t) {
-                            (s = !0), (o = t);
+                            (a = !0), (o = t);
                         },
                         f: function () {
                             try {
                                 u || null == n.return || n.return();
                             } finally {
-                                if (s) throw o;
+                                if (a) throw o;
                             }
                         },
                     };
@@ -210,7 +210,7 @@
                             'Cannot call a class as a function'
                         );
                 }
-                n.d(e, { Gr: () => X, Dd: () => $, iC: () => x, UT: () => j });
+                n.d(e, { Gr: () => X, Dd: () => $, iC: () => x, UT: () => P });
                 var d = function t() {
                         y(this, t);
                     },
@@ -428,17 +428,17 @@
                             o = {},
                             u = i.indexOf(':');
                         if ((-1 === u && (u = i.indexOf('?')), -1 !== u)) {
-                            var s,
-                                a = f(i.substr(u + 1).split(/[\:\?\&]/g));
+                            var a,
+                                s = f(i.substr(u + 1).split(/[\:\?\&]/g));
                             try {
-                                for (a.s(); !(s = a.n()).done; ) {
-                                    var c = s.value.split('=');
+                                for (s.s(); !(a = s.n()).done; ) {
+                                    var c = a.value.split('=');
                                     o[c[0]] = decodeURIComponent(c[1]);
                                 }
                             } catch (t) {
-                                a.e(t);
+                                s.e(t);
                             } finally {
-                                a.f();
+                                s.f();
                             }
                         }
                         n[r] = {
@@ -582,9 +582,9 @@
                                                     redirect: o,
                                                     confirm: Promise.resolve(),
                                                 },
-                                                s = e ? e.app : null;
-                                            !s ||
-                                            s.callEvent('app:guard', [
+                                                a = e ? e.app : null;
+                                            !a ||
+                                            a.callEvent('app:guard', [
                                                 u.redirect,
                                                 e,
                                                 u,
@@ -603,7 +603,7 @@
                                                                   o
                                                               )
                                                                   return (
-                                                                      s.show(
+                                                                      a.show(
                                                                           u.redirect
                                                                       ),
                                                                       void n(
@@ -671,7 +671,7 @@
                     })(),
                     x = (function (t) {
                         o(n, t);
-                        var e = s(n);
+                        var e = a(n);
                         function n(t, r) {
                             var i;
                             return (
@@ -875,34 +875,34 @@
                                             !this.app || !o)
                                         )
                                             return Promise.reject(null);
-                                        var s = this._segment.current(),
-                                            a = { ui: {} };
+                                        var a = this._segment.current(),
+                                            s = { ui: {} };
                                         this.app.copyConfig(
                                             t,
-                                            a.ui,
+                                            s.ui,
                                             this._subs
                                         ),
                                             this.app.callEvent('app:render', [
                                                 this,
                                                 e,
-                                                a,
+                                                s,
                                             ]),
-                                            (a.ui.$scope = this),
+                                            (s.ui.$scope = this),
                                             !i &&
-                                                s.isNew &&
-                                                s.view &&
-                                                s.view.destructor();
+                                                a.isNew &&
+                                                a.view &&
+                                                a.view.destructor();
                                         try {
                                             if (i && !u) {
                                                 var c = o,
                                                     l = c.getParentView();
                                                 l &&
                                                     'multiview' === l.name &&
-                                                    !a.ui.id &&
-                                                    (a.ui.id = c.config.id);
+                                                    !s.ui.id &&
+                                                    (s.ui.id = c.config.id);
                                             }
                                             this._root = this.app.webix.ui(
-                                                a.ui,
+                                                s.ui,
                                                 o
                                             );
                                             var f = this._root;
@@ -921,9 +921,9 @@
                                                     !this.app.app
                                                         ? (i.view = this)
                                                         : (i.view = this.app)),
-                                                s.isNew &&
-                                                    ((s.view = this),
-                                                    (s.isNew = !1)),
+                                                a.isNew &&
+                                                    ((a.view = this),
+                                                    (a.isNew = !1)),
                                                 (n = Promise.resolve(
                                                     this._init(this._root, e)
                                                 ).then(function () {
@@ -1095,7 +1095,7 @@
                     })(b),
                     k = (function (t) {
                         o(n, t);
-                        var e = s(n);
+                        var e = a(n);
                         function n(t, r) {
                             var i;
                             return (
@@ -1145,9 +1145,9 @@
                         );
                     })(),
                     O = !0,
-                    P = (function (t) {
+                    j = (function (t) {
                         o(n, t);
-                        var e = s(n);
+                        var e = a(n);
                         function n(t) {
                             var r;
                             y(this, n);
@@ -1560,7 +1560,7 @@
                                                   !0));
                                         var o = this.getSubView(),
                                             u = this._subSegment,
-                                            s = u
+                                            a = u
                                                 .show(i, o)
                                                 .then(function () {
                                                     return r.createFromURL(
@@ -1586,10 +1586,10 @@
                                         return (
                                             (this.ready = this.ready.then(
                                                 function () {
-                                                    return s;
+                                                    return a;
                                                 }
                                             )),
-                                            s
+                                            a
                                         );
                                     },
                                 },
@@ -1718,7 +1718,7 @@
                             n
                         );
                     })(b),
-                    j = (function () {
+                    P = (function () {
                         function t(e, n) {
                             var r = this;
                             y(this, t),
@@ -1856,7 +1856,7 @@
                                                 }
                                             );
                                         };
-                                        for (var s in o) u(s);
+                                        for (var a in o) u(a);
                                         return { v: t.id };
                                     })();
                                     return 'object' === r(o) ? o.v : void 0;
@@ -1902,12 +1902,12 @@
                 }
                 var $ = (function (t) {
                     o(r, t);
-                    var e = s(r);
+                    var e = a(r);
                     function r(t) {
                         var n;
                         return (
                             y(this, r),
-                            (t.router = t.router || j),
+                            (t.router = t.router || P),
                             E((n = e.call(this, t)).webix),
                             n
                         );
@@ -1925,7 +1925,7 @@
                         ]),
                         r
                     );
-                })(P);
+                })(j);
                 function V(t, e) {
                     return Object.prototype.hasOwnProperty.call(t, e);
                 }
@@ -1941,8 +1941,8 @@
                 }
                 var U = String.prototype.replace,
                     Q = String.prototype.split,
-                    L = '||||',
-                    I = function (t) {
+                    I = '||||',
+                    L = function (t) {
                         var e = t % 10;
                         return 11 !== t && 1 === e
                             ? 0
@@ -1950,24 +1950,24 @@
                             ? 1
                             : 2;
                     },
-                    D = {
+                    A = {
                         arabic: function (t) {
                             if (t < 3) return t;
                             var e = t % 100;
                             return e >= 3 && e <= 10 ? 3 : e >= 11 ? 4 : 5;
                         },
-                        bosnian_serbian: I,
+                        bosnian_serbian: L,
                         chinese: function () {
                             return 0;
                         },
-                        croatian: I,
+                        croatian: L,
                         french: function (t) {
                             return t > 1 ? 1 : 0;
                         },
                         german: function (t) {
                             return 1 !== t ? 1 : 0;
                         },
-                        russian: I,
+                        russian: L,
                         lithuanian: function (t) {
                             return t % 10 == 1 && t % 100 != 11
                                 ? 0
@@ -2003,7 +2003,7 @@
                                 : 3;
                         },
                     },
-                    N = {
+                    D = {
                         arabic: ['ar'],
                         bosnian_serbian: [
                             'bs-Latn-BA',
@@ -2051,7 +2051,7 @@
                         icelandic: ['is'],
                         slovenian: ['sl-SL'],
                     };
-                function A(t) {
+                function N(t) {
                     return t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 }
                 var B = /\$/g,
@@ -2066,16 +2066,16 @@
                         o = r || M,
                         u = 'number' == typeof e ? { smart_count: e } : e;
                     if (null != u.smart_count && i) {
-                        var s = Q.call(i, L);
+                        var a = Q.call(i, I);
                         i = (
-                            s[
+                            a[
                                 (function (t, e) {
-                                    return D[
+                                    return A[
                                         (function (t) {
                                             var e,
                                                 n =
                                                     ((e = {}),
-                                                    C(N, function (t, n) {
+                                                    C(D, function (t, n) {
                                                         C(t, function (t) {
                                                             e[t] = n;
                                                         });
@@ -2089,7 +2089,7 @@
                                         })(t)
                                     ](e);
                                 })(n || 'en', u.smart_count)
-                            ] || s[0]
+                            ] || a[0]
                         ).replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
                     }
                     return U.call(i, o, function (t, e) {
@@ -2098,7 +2098,7 @@
                             : t;
                     });
                 }
-                function q(t) {
+                function z(t) {
                     var e = t || {};
                     (this.phrases = {}),
                         this.extend(e.phrases || {}),
@@ -2112,17 +2112,17 @@
                         (this.tokenRegex = (function (t) {
                             var e = (t && t.prefix) || '%{',
                                 n = (t && t.suffix) || '}';
-                            if (e === L || n === L)
+                            if (e === I || n === I)
                                 throw new RangeError(
                                     '"||||" token is reserved for pluralization'
                                 );
-                            return new RegExp(A(e) + '(.*?)' + A(n), 'g');
+                            return new RegExp(N(e) + '(.*?)' + N(n), 'g');
                         })(e.interpolation));
                 }
-                (q.prototype.locale = function (t) {
+                (z.prototype.locale = function (t) {
                     return t && (this.currentLocale = t), this.currentLocale;
                 }),
-                    (q.prototype.extend = function (t, e) {
+                    (z.prototype.extend = function (t, e) {
                         C(
                             t,
                             function (t, n) {
@@ -2134,7 +2134,7 @@
                             this
                         );
                     }),
-                    (q.prototype.unset = function (t, e) {
+                    (z.prototype.unset = function (t, e) {
                         'string' == typeof t
                             ? delete this.phrases[t]
                             : C(
@@ -2148,13 +2148,13 @@
                                   this
                               );
                     }),
-                    (q.prototype.clear = function () {
+                    (z.prototype.clear = function () {
                         this.phrases = {};
                     }),
-                    (q.prototype.replace = function (t) {
+                    (z.prototype.replace = function (t) {
                         this.clear(), this.extend(t);
                     }),
-                    (q.prototype.t = function (t, e) {
+                    (z.prototype.t = function (t, e) {
                         var n,
                             r,
                             i = null == e ? {} : e;
@@ -2184,13 +2184,13 @@
                             r
                         );
                     }),
-                    (q.prototype.has = function (t) {
+                    (z.prototype.has = function (t) {
                         return V(this.phrases, t);
                     }),
-                    (q.transformPhrase = function (t, e, n) {
+                    (z.transformPhrase = function (t, e, n) {
                         return F(t, e, n);
                     });
-                var z = q;
+                var q = z;
                 function K(t, e, n) {
                     e.urls
                         ? (n = e.urls[n] || n)
@@ -2241,12 +2241,12 @@
                                 o = i ? i.get('lang') || 'en' : r.lang || 'en';
                             function u(e, n, u) {
                                 n.__esModule && (n = n.default);
-                                var s = { phrases: n };
-                                r.polyglot && t.webix.extend(s, r.polyglot);
-                                var c = (a.polyglot = new z(s));
+                                var a = { phrases: n };
+                                r.polyglot && t.webix.extend(a, r.polyglot);
+                                var c = (s.polyglot = new q(a));
                                 if (
                                     (c.locale(e),
-                                    (a._ = t.webix.bind(c.t, c)),
+                                    (s._ = t.webix.bind(c.t, c)),
                                     (o = e),
                                     i && i.put('lang', o),
                                     r.webix)
@@ -2256,22 +2256,22 @@
                                 }
                                 return u ? Promise.resolve() : t.refresh();
                             }
-                            function s(t, e) {
+                            function a(t, e) {
                                 if (!1 !== r.path) {
                                     var i = (r.path ? r.path + '/' : '') + t;
                                     u(t, n(755)('./' + i), e);
                                 }
                             }
-                            var a = {
+                            var s = {
                                 getLang: function () {
                                     return o;
                                 },
-                                setLang: s,
+                                setLang: a,
                                 setLangData: u,
                                 _: null,
                                 polyglot: null,
                             };
-                            t.setService('locale', a), s(o, !0);
+                            t.setService('locale', s), a(o, !0);
                         },
                         Menu: function (t, e, n) {
                             var r = e.getSubViewInfo().parent,
@@ -2324,15 +2324,15 @@
                                                     document.getElementsByTagName(
                                                         'link'
                                                     ),
-                                                s = 0;
-                                            s < u.length;
-                                            s++
+                                                a = 0;
+                                            a < u.length;
+                                            a++
                                         ) {
-                                            var a = u[s].getAttribute('title');
-                                            a &&
-                                                (a === e || a === o[0]
-                                                    ? (u[s].disabled = !1)
-                                                    : (u[s].disabled = !0));
+                                            var s = u[a].getAttribute('title');
+                                            s &&
+                                                (s === e || s === o[0]
+                                                    ? (u[a].disabled = !1)
+                                                    : (u[a].disabled = !0));
                                         }
                                         t.webix.skin.set(o[0]),
                                             t.webix.html.removeCss(
@@ -2355,8 +2355,8 @@
                                 i = n.logout || '/logout',
                                 o = n.afterLogin || t.config.start,
                                 u = n.afterLogout || '/login',
-                                s = n.ping || 3e5,
-                                a = n.model,
+                                a = n.ping || 3e5,
+                                s = n.model,
                                 c = n.user,
                                 l = {
                                     getUser: function () {
@@ -2364,7 +2364,7 @@
                                     },
                                     getStatus: function (t) {
                                         return t
-                                            ? a
+                                            ? s
                                                   .status()
                                                   .catch(function () {
                                                       return null;
@@ -2375,7 +2375,7 @@
                                             : null !== c;
                                     },
                                     login: function (e, n) {
-                                        return a.login(e, n).then(function (e) {
+                                        return s.login(e, n).then(function (e) {
                                             if (((c = e), !e))
                                                 throw new Error(
                                                     'Access denied'
@@ -2387,7 +2387,7 @@
                                     logout: function () {
                                         return (
                                             (c = null),
-                                            a.logout().then(function (e) {
+                                            s.logout().then(function (e) {
                                                 return (
                                                     t.callEvent(
                                                         'app:user:logout',
@@ -2419,10 +2419,10 @@
                                         f(t, r))
                                     );
                                 }),
-                                s &&
+                                a &&
                                     setInterval(function () {
                                         return l.getStatus(!0);
-                                    }, s);
+                                    }, a);
                         },
                         Status: function (t, e, n) {
                             var r = 'good',
@@ -2430,8 +2430,8 @@
                                 o = !1,
                                 u = n.expire;
                             u || !1 === u || (u = 2e3);
-                            var s = n.texts || G,
-                                a = n.icons || H;
+                            var a = n.texts || G,
+                                s = n.icons || H;
                             function c(t) {
                                 var i = e.$$(n.target);
                                 i &&
@@ -2440,9 +2440,9 @@
                                             "<div class='status_" +
                                             r +
                                             "'><span class='webix_icon fa-" +
-                                            a[r] +
-                                            "'></span> " +
                                             s[r] +
+                                            "'></span> " +
+                                            a[r] +
                                             '</div>'),
                                     i.setHTML(t));
                             }
@@ -2515,10 +2515,10 @@
                             var o = e.setParam,
                                 u = e.getParam;
                             (e.setParam = function (t, n, u) {
-                                var s = r.indexOf(t);
-                                return s >= 0
+                                var a = r.indexOf(t);
+                                return a >= 0
                                     ? ((i[t] = n),
-                                      this._segment.update('', n, s + 1),
+                                      this._segment.update('', n, a + 1),
                                       u ? e.show(null) : void 0)
                                     : o.call(this, t, n, u);
                             }),
@@ -2608,14 +2608,14 @@
                             Object.defineProperty(t, r.key, r);
                     }
                 }
-                function s(t, e) {
-                    return (s =
+                function a(t, e) {
+                    return (a =
                         Object.setPrototypeOf ||
                         function (t, e) {
                             return (t.__proto__ = e), t;
                         })(t, e);
                 }
-                function a(t, e) {
+                function s(t, e) {
                     return !e || ('object' !== i(e) && 'function' != typeof e)
                         ? (function (t) {
                               if (void 0 === t)
@@ -2646,7 +2646,7 @@
                                 configurable: !0,
                             },
                         })),
-                            e && s(t, e);
+                            e && a(t, e);
                     })(p, t);
                     var e,
                         n,
@@ -2684,7 +2684,7 @@
                                     var n = c(this).constructor;
                                     t = Reflect.construct(e, arguments, n);
                                 } else t = e.apply(this, arguments);
-                                return a(this, t);
+                                return s(this, t);
                             });
                     function p() {
                         return o(this, p), f.apply(this, arguments);
@@ -2891,7 +2891,7 @@
                             return (t.__proto__ = e), t;
                         })(t, e);
                 }
-                function s(t, e) {
+                function a(t, e) {
                     return !e || ('object' !== r(e) && 'function' != typeof e)
                         ? (function (t) {
                               if (void 0 === t)
@@ -2902,8 +2902,8 @@
                           })(t)
                         : e;
                 }
-                function a(t) {
-                    return (a = Object.setPrototypeOf
+                function s(t) {
+                    return (s = Object.setPrototypeOf
                         ? Object.getPrototypeOf
                         : function (t) {
                               return t.__proto__ || Object.getPrototypeOf(t);
@@ -2956,12 +2956,12 @@
                             })()),
                             function () {
                                 var t,
-                                    e = a(r);
+                                    e = s(r);
                                 if (c) {
-                                    var n = a(this).constructor;
+                                    var n = s(this).constructor;
                                     t = Reflect.construct(e, arguments, n);
                                 } else t = e.apply(this, arguments);
-                                return s(this, t);
+                                return a(this, t);
                             });
                     function f() {
                         return i(this, f), l.apply(this, arguments);
@@ -3046,15 +3046,8 @@
                                         e = this.$$('login:form');
                                     if (e.validate()) {
                                         var n = e.getValues();
-                                        t.login(n.email, n.password)
-                                            .then(function (t) {
-                                                !(function (t) {
-                                                    throw new TypeError(
-                                                        '"user" is read-only'
-                                                    );
-                                                })();
-                                            })
-                                            .catch(function () {
+                                        t.login(n.email, n.password).catch(
+                                            function () {
                                                 webix.html.removeCss(
                                                     e.$view,
                                                     'invalid_login'
@@ -3066,7 +3059,8 @@
                                                             'invalid_login'
                                                         );
                                                     });
-                                            });
+                                            }
+                                        );
                                     }
                                 },
                             },
@@ -3133,7 +3127,7 @@
                             'Cannot call a class as a function'
                         );
                 }
-                function s(t, e) {
+                function a(t, e) {
                     for (var n = 0; n < e.length; n++) {
                         var r = e[n];
                         (r.enumerable = r.enumerable || !1),
@@ -3142,8 +3136,8 @@
                             Object.defineProperty(t, r.key, r);
                     }
                 }
-                function a(t, e) {
-                    return (a =
+                function s(t, e) {
+                    return (s =
                         Object.setPrototypeOf ||
                         function (t, e) {
                             return (t.__proto__ = e), t;
@@ -3180,7 +3174,7 @@
                                 configurable: !0,
                             },
                         })),
-                            e && a(t, e);
+                            e && s(t, e);
                     })(p, t);
                     var e,
                         n,
@@ -3285,11 +3279,8 @@
                                                           t.app.show(
                                                               t._nextUrl
                                                           ))
-                                                        : supervisor &&
-                                                          (console.log(
-                                                              supervisor
-                                                          ),
-                                                          supervisor
+                                                        : window.supervisor &&
+                                                          window.supervisor
                                                               .stop()
                                                               .then(
                                                                   function () {
@@ -3311,7 +3302,7 @@
                                                                           '/layout/score'
                                                                       );
                                                                   }
-                                                              ));
+                                                              );
                                                 },
                                             },
                                         ],
@@ -3345,7 +3336,7 @@
                                         (this._url = e);
                                 },
                             },
-                        ]) && s(e.prototype, n),
+                        ]) && a(e.prototype, n),
                         p
                     );
                 })(r.iC);
@@ -3390,7 +3381,7 @@
                             return (t.__proto__ = e), t;
                         })(t, e);
                 }
-                function s(t, e) {
+                function a(t, e) {
                     return !e || ('object' !== r(e) && 'function' != typeof e)
                         ? (function (t) {
                               if (void 0 === t)
@@ -3401,8 +3392,8 @@
                           })(t)
                         : e;
                 }
-                function a(t) {
-                    return (a = Object.setPrototypeOf
+                function s(t) {
+                    return (s = Object.setPrototypeOf
                         ? Object.getPrototypeOf
                         : function (t) {
                               return t.__proto__ || Object.getPrototypeOf(t);
@@ -3455,12 +3446,12 @@
                             })()),
                             function () {
                                 var t,
-                                    e = a(r);
+                                    e = s(r);
                                 if (c) {
-                                    var n = a(this).constructor;
+                                    var n = s(this).constructor;
                                     t = Reflect.construct(e, arguments, n);
                                 } else t = e.apply(this, arguments);
-                                return s(this, t);
+                                return a(this, t);
                             });
                     function f() {
                         return i(this, f), l.apply(this, arguments);
@@ -3521,7 +3512,7 @@
                             return (t.__proto__ = e), t;
                         })(t, e);
                 }
-                function s(t, e) {
+                function a(t, e) {
                     return !e || ('object' !== r(e) && 'function' != typeof e)
                         ? (function (t) {
                               if (void 0 === t)
@@ -3532,8 +3523,8 @@
                           })(t)
                         : e;
                 }
-                function a(t) {
-                    return (a = Object.setPrototypeOf
+                function s(t) {
+                    return (s = Object.setPrototypeOf
                         ? Object.getPrototypeOf
                         : function (t) {
                               return t.__proto__ || Object.getPrototypeOf(t);
@@ -3586,12 +3577,12 @@
                             })()),
                             function () {
                                 var t,
-                                    e = a(r);
+                                    e = s(r);
                                 if (c) {
-                                    var n = a(this).constructor;
+                                    var n = s(this).constructor;
                                     t = Reflect.construct(e, arguments, n);
                                 } else t = e.apply(this, arguments);
-                                return s(this, t);
+                                return a(this, t);
                             });
                     function f() {
                         return i(this, f), l.apply(this, arguments);
@@ -3610,7 +3601,7 @@
                                             template: 'default',
                                             subject:
                                                 this.$$('examName').getValue(),
-                                            api: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
+                                            link: 'https://damp-anchorage-65606.herokuapp.com/api/report/',
                                         }
                                     );
                                 },
@@ -3661,41 +3652,44 @@
                                                                     e
                                                                 ) {
                                                                     var n =
-                                                                            e.token,
-                                                                        r =
-                                                                            new Supervisor(
+                                                                        e.token;
+                                                                    (window.supervisor =
+                                                                        new Supervisor(
+                                                                            {
+                                                                                url: 'https://dev04.proctoring.online',
+                                                                            }
+                                                                        )),
+                                                                        window.supervisor
+                                                                            .init(
                                                                                 {
-                                                                                    url: 'https://dev04.proctoring.online',
+                                                                                    provider:
+                                                                                        'jwt',
+                                                                                    token: n,
+                                                                                }
+                                                                            )
+                                                                            .then(
+                                                                                function () {
+                                                                                    return supervisor.start();
+                                                                                }
+                                                                            )
+                                                                            .catch(
+                                                                                function (
+                                                                                    t
+                                                                                ) {
+                                                                                    alert(
+                                                                                        t.toString()
+                                                                                    ),
+                                                                                        (location.href =
+                                                                                            '/');
+                                                                                }
+                                                                            )
+                                                                            .then(
+                                                                                function () {
+                                                                                    t.app.show(
+                                                                                        '/layout/question/1'
+                                                                                    );
                                                                                 }
                                                                             );
-                                                                    r.init({
-                                                                        provider:
-                                                                            'jwt',
-                                                                        token: n,
-                                                                    })
-                                                                        .then(
-                                                                            function () {
-                                                                                return r.start();
-                                                                            }
-                                                                        )
-                                                                        .catch(
-                                                                            function (
-                                                                                t
-                                                                            ) {
-                                                                                alert(
-                                                                                    t.toString()
-                                                                                ),
-                                                                                    (location.href =
-                                                                                        '/');
-                                                                            }
-                                                                        )
-                                                                        .then(
-                                                                            function () {
-                                                                                t.app.show(
-                                                                                    '/layout/question/1'
-                                                                                );
-                                                                            }
-                                                                        );
                                                                 });
                                                         },
                                                     },
@@ -3795,19 +3789,40 @@
             'use strict';
             const t = {
                 status: function () {
+                    var t = localStorage.getItem('token');
                     return webix
                         .ajax()
+                        .headers({ Authorization: 'Bearer '.concat(t) })
                         .post('api/login/status')
                         .then(function (t) {
                             return t.json();
                         });
                 },
                 login: function (t, e) {
+                    var n;
                     return webix
                         .ajax()
                         .post('api/login', { email: t, password: e })
                         .then(function (t) {
-                            return localStorage.setItem('token', t), t.json();
+                            return (n = t.json());
+                        })
+                        .then(function () {
+                            return webix
+                                .ajax()
+                                .post('api/token', {
+                                    id: n._id,
+                                    email: n.email,
+                                });
+                        })
+                        .then(function (t) {
+                            return t.json();
+                        })
+                        .then(function (t) {
+                            var e = t.token;
+                            return localStorage.setItem('token', e), n;
+                        })
+                        .catch(function (t) {
+                            return console.log(t);
                         });
                 },
                 logout: function () {
@@ -3886,14 +3901,14 @@
                     t
                 );
             }
-            function s(t, e) {
-                return (s =
+            function a(t, e) {
+                return (a =
                     Object.setPrototypeOf ||
                     function (t, e) {
                         return (t.__proto__ = e), t;
                     })(t, e);
             }
-            function a(t, e) {
+            function s(t, e) {
                 return !e || ('object' !== r(e) && 'function' != typeof e)
                     ? (function (t) {
                           if (void 0 === t)
@@ -3924,7 +3939,7 @@
                             configurable: !0,
                         },
                     })),
-                        e && s(t, e);
+                        e && a(t, e);
                 })(l, n);
                 var r,
                     i,
@@ -3960,7 +3975,7 @@
                                 var n = c(this).constructor;
                                 t = Reflect.construct(e, arguments, n);
                             } else t = e.apply(this, arguments);
-                            return a(this, t);
+                            return s(this, t);
                         });
                 function l(n) {
                     var r;
@@ -3991,7 +4006,14 @@
                 return l;
             })(e.Dd);
             webix.ready(function () {
-                return new l().render();
+                return (
+                    webix.attachEvent('onBeforeAjax', function (t, e, n, r, i) {
+                        i.Authorization = 'Bearer '.concat(
+                            localStorage.getItem('token')
+                        );
+                    }),
+                    new l().render()
+                );
             });
         })();
 })();
